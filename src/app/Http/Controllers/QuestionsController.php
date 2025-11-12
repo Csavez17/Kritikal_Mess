@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Question;
 
 class QuestionsController extends Controller
 {
@@ -37,8 +38,8 @@ class QuestionsController extends Controller
         ]);
 
         $question = new Question();
-        $question->question_name = $request->'question_name';
-        $question_>category_id = $request->'category_id';
+        $question->question_name = $request->input('question_name');
+        $question->category_id = $request->input('category_id');
         $question->save();
 
         return redirect()->route('questions.index')->with('success', 'A kérdés sikeresen létrehozva.');
