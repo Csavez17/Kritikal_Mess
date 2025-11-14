@@ -31,10 +31,13 @@ class QuestionsController extends Controller
     {
         $request->validate([
             'question_name' => 'required|min:3|max:255',
+            'category_id' => 'required|exists:categories,id',
         ],[
             'question_name.required' => 'A kérdés mező üresen nem menthető.',
             'question_name.min' => 'A kérdésnek legalább 3 karakter hosszúnak kell lennie.',
             'question_name.max' => 'A kérdés nem lehet hosszabb 255 karakternél.',
+            'category_id.required' => 'A kategória mező üresen nem menthető.',
+            'category_id.exists' => 'A kiválasztott kategória érvénytelen.',
         ]);
 
         $question = new Question();
