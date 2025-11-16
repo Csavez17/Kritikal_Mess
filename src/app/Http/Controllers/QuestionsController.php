@@ -13,7 +13,7 @@ class QuestionsController extends Controller
     public function index()
     {
         $questions = Question::all();
-        return view('questions.index', compact('questions'));
+        return view('questions.votes', compact('questions'));
     }
 
     /**
@@ -45,7 +45,7 @@ class QuestionsController extends Controller
         $question->category_id = $request->input('category_id');
         $question->save();
 
-        return redirect()->route('questions.index')->with('success', 'A kérdés sikeresen létrehozva.');
+        return redirect()->route('questions.votes')->with('success', 'A kérdés sikeresen létrehozva.');
     }
 
 
