@@ -9,8 +9,8 @@
 
 <form action="{{ route('questions.store') }}" method="post">
     @csrf
-    <label for="question_name">Kérdés:</label>
-    <input type="text" id="question_name" name="question_name">
-    <button type="submit">Ment</button>
+    <label class= "form-label" for="question_name">A kérdésem:</label>
+    <textarea class= "form-textarea" type="text" id="question_name" name="question_name"></textarea>
+    <button class= "button" type="submit">Ment</button>
 </form>
 @endsection
