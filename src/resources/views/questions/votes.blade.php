@@ -17,7 +17,6 @@
             <li>
                 <strong>{{ $question->id }} - {{ $question->question_name }}</strong>
             </li>
-            
         @endforeach
     </ul>
 @endif
