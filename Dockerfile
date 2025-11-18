@@ -6,6 +6,8 @@ FROM php:8.2-fpm
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     git \
+    nodejs \
+    npm \
     libzip-dev zip unzip \
     libonig-dev \
     # Fontos a CURL a külső API hívásokhoz

@@ -25,3 +25,5 @@ Route::get('/login', function () {
 Route::get('/register', function () { 
     return view('sign.register'); 
 })->name('sign.register');
+
+require __DIR__.'/auth.php';
