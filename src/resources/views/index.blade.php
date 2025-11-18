@@ -1,11 +1,19 @@
 @extends('layout')
 
 @section('content')
-<h1>Főoldal</h1>
 
-<div>
-    <a href="{{ route('votes') }}">Szavazok</a>
-    <a href="{{ route('questions.create') }}" >Új szavazást indítok</a>
+<p class="text">Ahol a kritikus többség dönt helyetted.</p>
+
+<div class="button-group">
+
+    <div class="button-block">
+        <a href="{{ route('votes') }}" class="big_button">Szavazok</a>
+    </div>
+
+    <div class="button-block">
+        <a href="{{ route('questions.create') }}" class="big_button">Kérdezek</a>
+    </div>
+
 </div>
 
 @endsection
