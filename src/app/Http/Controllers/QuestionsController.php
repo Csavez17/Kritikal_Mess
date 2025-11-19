@@ -21,7 +21,8 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        //
+        $questions = Question::all();
+        return view('questions.create', compact('questions'));
     }
 
     /**
