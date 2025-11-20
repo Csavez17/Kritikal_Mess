@@ -50,7 +50,7 @@ class QuestionsController extends Controller
     }
 
 
-    /**1
+    /**
      * Display the specified resource.
      */
     public function show(string $id)
