@@ -11,7 +11,7 @@
         <nav>
             <ul>
                 <li><a href="{{route('index')}}">Főoldal</a></li>
-                <li><a href="{{route('votes')}}">Kérdések</a></li>
+                <li><a href="{{route('questions.index')}}">Kérdések</a></li>
                 <li><a href="{{route('questions.create')}}">Új szavazás</a></li>
                 <li><a href="{{route('sign.register')}}">Regisztráció</a></li>
                 <li><a href="{{route('sign.login')}}">Bejelentkezés</a></li>
