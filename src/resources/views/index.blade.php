@@ -7,7 +7,7 @@
 <div class="button-group">
 
     <div class="button-block">
-        <a href="{{ route('votes') }}" class="big_button">Szavazok</a>
+        <a href="{{ route('questions.index') }}" class="big_button">Szavazok</a>
     </div>
 
     <div class="button-block">
