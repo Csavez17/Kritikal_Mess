@@ -11,12 +11,12 @@ class Question extends Model
         return $this->hasMany(Vote::class);
     }
 
-    public function YesVotes(): int
+    public function yesVotes(): int
     {
         return $this->votes()->where('vote_value', true)->count();
     }
 
-    public function NoVotes(): int
+    public function noVotes(): int
     {
         return $this->votes()->where('vote_value', false)->count();
     }

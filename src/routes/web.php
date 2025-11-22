@@ -5,7 +5,7 @@ use App\Http\Controllers\QuestionsController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\VotesController;
 
-Route::post('/vote/{question_id}/{type}', [VotesController::class, 'vote'])->name('vote');
+Route::post('/questions/{question}/vote', [VotesController::class, 'store'])->name('vote');
 
 Route::get('/', function () {
     return view('welcome');

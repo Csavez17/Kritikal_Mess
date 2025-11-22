@@ -55,7 +55,13 @@ class QuestionsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $yesVotes = $question->yesVotes();
+        $noVotes = $question->noVotes();
+        return view('questions.show', [
+            'question' => $question,
+            'yesVotes' => $yesVotes,
+            'noVotes' => $noVotes
+        ]);
     }
 
     /**
