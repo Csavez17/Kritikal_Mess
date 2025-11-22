@@ -1,0 +1,228 @@
+/* ============================================================
+   VÁLTOZÓK (SZÍNEK ÉS BEÁLLÍTÁSOK)
+   ============================================================ */
+:root {
+    /* --- HÁTTÉR SZÍNEK --- */
+    --oldal-hatter-teteje:   #332a2f;   /* Sötétbarna/lila (felső rész) */
+    --oldal-hatter-alja:     #4f3845;   /* Világosabb lila (alsó rész) */
+    
+    /* --- SZÖVEG SZÍNEK --- */
+    --szoveg-feher:          #ffffff;   /* Címsorok, sima szövegek */
+    --szoveg-fekete:         #000000;   /* Gombok szövege, beviteli mezők szövege */
+    --szoveg-cimke-rozsaszin:#fedbef;   /* A "Kérdés", "Kategória" feliratok színe */
+    --szoveg-halvany-lila:   #d5abc3;   /* Díszítő szövegek, kevésbé fontos infók */
+    
+    /* --- GOMBOK SZÍNEI --- */
+    --gomb-kicsi-hatter:     #9ea3db;   /* A "Mentés" gomb lilája */
+    --gomb-nagy-hatter:      #fedbef;   /* A főoldali nagy gombok rózsaszínje */
+    --gomb-nagy-szoveg:      rgb(83, 41, 69); /* A nagy gomb sötét szövege */
+    
+    /* --- LINKEK --- */
+    --link-hover-szin:       #f0c0d0;   
+}
+
+/* ============================================================
+   ALAP BEÁLLÍTÁSOK (RESET)
+   Minden elemre vonatkozó alapvető szabályok
+   ============================================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    /* Itt használjuk a fenti változókat: */
+    background-color: var(--oldal-hatter-teteje);
+    background: linear-gradient(to bottom, var(--oldal-hatter-teteje), var(--oldal-hatter-alja)); 
+    color: var(--szoveg-fekete);              
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Hogy a lábléc mindig alul legyen */
+}
+
+/* ============================================================
+   CÍMSOROK ÉS SZÖVEGEK
+   ============================================================ */
+h1 {
+    color: var(--szoveg-feher); 
+    font-size: 2em;
+    font-family: 'britannic bold', sans-serif;
+    margin-bottom: 1.5em;
+}
+
+.text {
+    color: var(--szoveg-halvany-lila); 
+    font-size: 2.5em;
+    font-family: 'britannic bold', sans-serif;
+    margin-bottom: 1.5em;
+    text-align: center;
+}
+
+/* ============================================================
+   ŰRLAP ELEMEK (FORM)
+   Input mezők, címkék, legördülő menük
+   ============================================================ */
+.form-group {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* A beviteli mező (textarea) kinézete */
+.form-textarea {
+    color: var(--szoveg-fekete);
+    font-size: 1.2em;
+    margin-bottom: 0.5em;
+    border-radius: 10px;
+    width: 100%; 
+    min-width: 200px; 
+    padding: 10px; 
+    height: 150px; 
+}
+
+/* A mezők feletti feliratok (pl. "Kategória") */
+.form-label {
+    color: var(--szoveg-cimke-rozsaszin);
+    font-size: 1.8em;
+    margin-bottom: 0.5em;
+    border-radius: 10px;
+}
+
+/* A legördülő menü (select) */
+.category {
+    color: #0a0106; /* Nagyon sötét, majdnem fekete */
+    font-size: 1.1em;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 0.5em;
+    border-radius: 10px;
+    padding: 8px; 
+}
+
+/* ============================================================
+   GOMBOK (BUTTONS)
+   ============================================================ */
+
+/* A sima, kisebb gombok (pl. Mentés) */
+button {
+    background-color: var(--gomb-kicsi-hatter);
+    color: var(--szoveg-fekete);
+    font-size: 1em;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+/* A nagy gombok konténere (elrendezés) */
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 15em; 
+    margin-top: 20px;
+}
+
+.button-block {
+    text-align: center;
+    max-width: 300px;
+}
+
+/* A nagy, speciális gombok */
+.big_button {
+    display: inline-block;
+    background: var(--gomb-nagy-hatter);
+    color: var(--gomb-nagy-szoveg);
+    padding: 24px 50px;
+    border-radius: 8px;
+    font-family: 'Courier New', Courier, monospace;
+    text-decoration: none;
+    font-size: 35px;
+    margin-top: 10px;
+}
+
+/* ============================================================
+   FEJLÉC (HEADER) ÉS MENÜ
+   ============================================================ */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 10vh;
+    padding: 1em;
+    max-width: 90em;
+    margin: 0 auto;
+}
+
+header ul {
+    display: flex;
+    list-style: none;
+    padding-right: 1.5em;
+}
+
+header li {
+    margin-left: 1em;
+}
+
+header a {
+    color: var(--szoveg-feher);
+    font-size: 0.7em;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+header a:hover {
+    color: var(--link-hover-szin);
+}
+
+/* ============================================================
+   FŐ TARTALOM (MAIN) ÉS KÉPEK
+   ============================================================ */
+.image-wrapper {
+    flex: 1; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    width: 80%;           
+    margin: 0 auto;
+    background-size: cover;       
+    background-position: center;  
+    position: relative;
+}
+
+.content-on-image {
+    text-align: center;
+    color: var(--szoveg-feher); 
+}
+
+/* ============================================================
+   LÁBLÉC (FOOTER)
+   ============================================================ */
+footer {
+    width: 100%;
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 1em;
+    color: var(--szoveg-feher);
+}
+
+/* Lista elemek általános beállítása (pl. footerben vagy máshol) */
+li {
+    color: var(--szoveg-feher);
+    font-size: 1.5em;
+    margin-bottom: 0.5em;
+    list-style: none;
+}
+/* ============================================================
+   EGYÉB SZÖVEGEK
+   ============================================================ */
+p {
+    color: var(--szoveg-feher); /*"Nincsenek kérdések" látszódjon */
+    font-size: 1.2em;
+    font-family: 'Courier New', Courier, monospace;
+}
