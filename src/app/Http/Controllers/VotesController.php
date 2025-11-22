@@ -27,9 +27,19 @@ class VotesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request, Question $question)
     {
-        //
+        $validated = $request->validate([
+            'vote_value' => 'required|boolean',
+        ]);
+
+        $vote = $question->votes()->create([
+            'vote_value' => $validated['vote_value'],
+            // 'user_id' => auth()->id(),
+        ]);
+
+        $question->votes()->save($vote);
+        return back()->with('success', 'Szavazat elmentve.');
     }
 
     /**
