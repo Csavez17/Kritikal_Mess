@@ -11,6 +11,7 @@ services:
     working_dir: /var/www/html
     ports:
       - "8080:8000"
+      - "5173:5173"
     depends_on:
       - db
     environment:

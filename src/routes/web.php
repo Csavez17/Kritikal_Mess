@@ -23,5 +23,7 @@ Route::get('/register', function () {
     return view('sign.register'); 
 })->name('sign.register');
 
+require __DIR__.'/auth.php';
+
 Route::resource('questions', QuestionsController::class);
 Route::resource('categories', CategoriesController::class);
