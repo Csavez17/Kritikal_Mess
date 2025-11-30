@@ -13,7 +13,7 @@ class QuestionsController extends Controller
     public function index()
     {
         $questions = Question::all();
-        return view('questions.votes', compact('questions'));
+        return view('questions.index', compact('questions'));
     }
 
     /**
@@ -21,7 +21,8 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        //
+        $questions = Question::all();
+        return view('questions.create', compact('questions'));
     }
 
     /**
@@ -31,21 +32,21 @@ class QuestionsController extends Controller
     {
         $request->validate([
             'question_name' => 'required|min:3|max:255',
-            'category_id' => 'required|exists:categories,id',
+            // 'category_id' => 'required|exists:categories,id',
         ],[
             'question_name.required' => 'A kérdés mező üresen nem menthető.',
             'question_name.min' => 'A kérdésnek legalább 3 karakter hosszúnak kell lennie.',
             'question_name.max' => 'A kérdés nem lehet hosszabb 255 karakternél.',
-            'category_id.required' => 'A kategória mező üresen nem menthető.',
-            'category_id.exists' => 'A kiválasztott kategória érvénytelen.',
+            // 'category_id.required' => 'A kategória mező üresen nem menthető.',
+            // 'category_id.exists' => 'A kiválasztott kategória érvénytelen.',
         ]);
 
         $question = new Question();
         $question->question_name = $request->input('question_name');
-        $question->category_id = $request->input('category_id');
+        // $question->category_id = $request->input('category_id');
         $question->save();
 
-        return redirect()->route('questions.votes')->with('success', 'A kérdés sikeresen létrehozva.');
+        return redirect()->route('questions.index')->with('success', 'A kérdés sikeresen létrehozva.');
     }
 
 
@@ -54,7 +55,13 @@ class QuestionsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $yesVotes = $question->yesVotes();
+        $noVotes = $question->noVotes();
+        return view('questions.show', [
+            'question' => $question,
+            'yesVotes' => $yesVotes,
+            'noVotes' => $noVotes
+        ]);
     }
 
     /**
