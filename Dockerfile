@@ -1,35 +1,31 @@
-# 1. Alap image: Használjunk FPM-et, mivel ez a leggyakoribb Laravel beállítás
-# A CLI image (php:8.2-cli) nem tartalmaz FPM-et vagy webszervert.
-FROM php:8.2-fpm 
+FROM php:8.2-fpm
 
-# 2. OS csomagok telepítése (beleértve a git-et, zip-et és a kiterjesztés fejlesztői csomagjait)
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    git \
-    nodejs \
-    npm \
-    libzip-dev zip unzip \
-    libonig-dev \
-    # Fontos a CURL a külső API hívásokhoz
-    libcurl4-openssl-dev \
+# 1. Csomagok
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    git nodejs npm libzip-dev zip unzip libonig-dev libcurl4-openssl-dev \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# 3. PHP kiterjesztések telepítése
+# 2. Ext
 RUN docker-php-ext-install pdo pdo_mysql mbstring zip curl
 
-# 4. Composer telepítése
+# 3. Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# 5. Munkakönyvtár beállítása
 WORKDIR /var/www/html
 
-# 6. A Laravel kód bemásolása
-# Mivel a projekt az SRC mappában van, bemásoljuk a konténer gyökerébe
+# ⭐ VÁLTOZÁS: Most kívül vagyunk, tehát az "src/" mappát másoljuk be!
 COPY src/ .
 
-# 7. Composer függőségek telepítése
-# Csak a termelési függőségeket telepítjük.
+# 4. Takarítás (Fontos!)
+RUN rm -rf vendor composer.lock bootstrap/cache/*.php node_modules
+
+# 5. Telepítés (Most már látnia kell a composer.json-t, mert bemásoltuk az src-ből)
 RUN composer install --no-dev --optimize-autoloader
 
-# 8. Utolsó parancs (opcionális, a docker-compose.yml felülírja, de jelzi a célt)
+# 6. Jogosultságok
+RUN chown -R www-data:www-data /var/www/html
+
+# 7. .env
+RUN cp .env.example .env
+
 CMD ["php-fpm"]
