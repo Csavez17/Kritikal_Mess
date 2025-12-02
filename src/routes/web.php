@@ -25,6 +25,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin', [AdminDashboardController::class, 'show'])->middleware('can:admin-access');
+Route::get('/admin2', [AdminDashboardController::class, 'show'])->middleware('checkadmin');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
