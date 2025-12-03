@@ -9,58 +9,38 @@ use App\Models\Vote;
 class VotesController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Szavazat mentése
      */
-    public function index()
+    public function store(Request $request, Question $question)
     {
-        //
-    }
+        $user = Auth::user();
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        if ($user) {
+            $alreadyVoted = Vote::where('question_id', $question->id)
+                                ->where('user_id', $user->id)
+                                ->exists();
+        } else {
+            $alreadyVoted = session()->has('voted_' . $question->id);
+        }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+        if ($alreadyVoted) {
+            return back()->with('error', 'Erre a kérdésre már szavaztál!');
+        }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+        $request->validate([
+            'vote_value' => 'required|boolean',
+        ]);
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+        $vote = new Vote();
+        $vote->question_id = $question->id;
+        $vote->vote_value = $request->input('vote_value');
+        
+        $vote->user_id = $user ? $user->id : null; 
+        
+        $vote->save();
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
+        session()->put('voted_' . $question->id, true);
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
+        return back()->with('success', 'Köszönjük a szavazatodat!');
     }
 }
