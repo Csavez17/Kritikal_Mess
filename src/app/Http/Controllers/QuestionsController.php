@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\Category;
 
 class QuestionsController extends Controller
 {
@@ -22,7 +23,8 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('questions.create');
+        $categories = Category::all(); //Categories visszaadása kieg. jav.
+        return view('questions.create', compact('categories')); //Question create + categories megjelenítése jav. 
     }
 
     /**
