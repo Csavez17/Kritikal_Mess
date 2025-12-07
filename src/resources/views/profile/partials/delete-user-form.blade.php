@@ -1,30 +1,29 @@
 <section class="space-y-6">
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Delete Account') }}
+        <h2 class="profile-section-title" style="color: red;">
+            {{ __('Fiók törlése') }}
         </h2>
-
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain.') }}
+        <p>
+            {{ __("Ha törlöd a fiókodat, minden adatod véglegesen elveszik.") }}
         </p>
     </header>
 
-    <x-danger-button
+    <x-danger-button class="button" style="background-color: darkred;"
         x-data=""
         x-on:click.prevent="$dispatch('open-modal', 'confirm-user-deletion')"
     >{{ __('Delete Account') }}</x-danger-button>
 
     <x-modal name="confirm-user-deletion" :show="$errors->userDeletion->isNotEmpty()" focusable>
-        <form method="post" action="{{ route('profile.destroy') }}" class="p-6">
+        <form method="post" action="{{ route('profile.destroy') }}" class="p-6 profile-modal">
             @csrf
             @method('delete')
 
-            <h2 class="text-lg font-medium text-gray-900">
-                {{ __('Are you sure you want to delete your account?') }}
+            <h2 class="profile-section-title" style="color: black;">
+                {{ __('Biztosan törölni akarod a fiókod?') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
-                {{ __('Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
+            <p class="profile-section-desc" style="color: #666;">
+                {{ __("Kérjük, add meg a jelszavadat a törlés megerősítéséhez.") }}
             </p>
 
             <div class="mt-6">
@@ -34,7 +33,7 @@
                     id="password"
                     name="password"
                     type="password"
-                    class="mt-1 block w-3/4"
+                    class="form-input"
                     placeholder="{{ __('Password') }}"
                 />
 
@@ -46,7 +45,7 @@
                     {{ __('Cancel') }}
                 </x-secondary-button>
 
-                <x-danger-button class="ms-3">
+                <x-danger-button class="button" style="background-color: darkred; margin-left: 10px;">
                     {{ __('Delete Account') }}
                 </x-danger-button>
             </div>

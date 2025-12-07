@@ -81,6 +81,8 @@ h1 {
     min-width: 200px; 
     padding: 10px; 
     height: 150px; 
+    resize: none;
+   
 }
 
 /* A mezők feletti feliratok (pl. "Kategória") */
@@ -260,4 +262,30 @@ a {
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
     margin-top: 0.5em;
+}
+
+/* ============================================================
+   PROFIL OLDAL BEÁLLÍTÁSOK
+   ============================================================ */
+
+/* A szekciók címei (pl. Profil információk) */
+.profile-section-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* A leíró szövegek (pl. Frissítsd a fiókod...) */
+.profile-section-desc {
+    color: var(--szoveg-feher);
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 1.2rem;   
+    text-align: center;
+}
+
+/* A mentés visszajelzés (Saved.) */
+.profile-saved-message {
+    color: var(--szoveg-feher);
+    margin-left: 10px;
 }
