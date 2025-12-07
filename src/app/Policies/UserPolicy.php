@@ -12,7 +12,6 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        return false;
         return $user->is_admin; // admin jogosultsággal bármelyik user megtekinthető
     }
 

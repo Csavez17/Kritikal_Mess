@@ -23,8 +23,8 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        $categories = Category::all(); //Categories visszaadása kieg. jav.
-        return view('questions.create', compact('categories')); //Question create + categories megjelenítése jav. 
+        $categories = Category::all();
+        return view('questions.create', compact('categories'));
     }
 
     /**
