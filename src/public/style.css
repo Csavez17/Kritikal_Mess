@@ -91,8 +91,27 @@ h1 {
     border-radius: 10px;
 }
 
+/* Belépési oldalon e-mail/password formázása. */
+.form-label-login {
+    color: var(--szoveg-cimke-rozsaszin);
+    font-size: 1.8em;
+    margin-bottom: 0.5em;
+    border-radius: 10px;
+    text-align: center;
+}
+
 /* A legördülő menü (select) */
 .category {
+    color: #0a0106; /* Nagyon sötét, majdnem fekete */
+    font-size: 1.1em;
+    font-family: 'Courier New', Courier, monospace;
+    margin-bottom: 0.5em;
+    border-radius: 10px;
+    padding: 8px; 
+}
+
+/* Input mező bejelentkező oldal */
+.form-input {
     color: #0a0106; /* Nagyon sötét, majdnem fekete */
     font-size: 1.1em;
     font-family: 'Courier New', Courier, monospace;
@@ -225,4 +244,20 @@ p {
     color: var(--szoveg-feher); /*"Nincsenek kérdések" látszódjon */
     font-size: 1.2em;
     font-family: 'Courier New', Courier, monospace;
+}
+
+/* Forgot your password formázás.*/
+a {
+    color: var(--szoveg-cimke-rozsaszin);
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 0.5em;
+}
+
+/* Remember me formázás.*/
+.a {
+    color: var(--szoveg-cimke-rozsaszin);
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 0.5em;
 }

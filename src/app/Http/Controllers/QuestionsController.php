@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Question;
+use App\Models\Category;
 
 class QuestionsController extends Controller
 {

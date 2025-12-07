@@ -15,7 +15,7 @@ class CategorySeeder extends Seeder
     {
         $categories = [
     ['category_name' => 'Technológia'],
-    ['category_name' => 'Programozás'],
+    ['category_name' => 'Szerelem'],
     ['category_name' => 'Sport'],
     ['category_name' => 'Játékok'],
     ['category_name' => 'Zene'],

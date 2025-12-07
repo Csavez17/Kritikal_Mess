@@ -8,13 +8,23 @@ use App\Http\Controllers\VotesController;
 use Illuminate\Support\Facades\Route;
 
 
+/*Route::get('/', function () {                //Felfüggetve! 2 in 1 logout index oldalra mutat!  
+    return view('welcome');
+});
+
+
 Route::get('/index', function () {
+    return view('index');
+})->name('index');*/                           //Felfüggetve! 2 in 1 logout index oldalra mutat!
+
+
+// 2 in 1 kód:
+Route::get('/', function () {
     return view('index');
 })->name('index');
 
 
 Route::get('/questions', [QuestionsController::class, 'index'])->name('questions.index');
-Route::get('/questions/{question}', [QuestionsController::class, 'show'])->name('questions.show');
 
 
 Route::post('/questions/{question}/vote', [VotesController::class, 'store'])->name('vote');
@@ -34,6 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/questions', [QuestionsController::class, 'store'])->name('questions.store');
 
 });
+
+Route::get('/questions/{question}', [QuestionsController::class, 'show'])->name('questions.show');
 
 
 require __DIR__.'/auth.php';
