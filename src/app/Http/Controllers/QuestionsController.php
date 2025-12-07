@@ -22,7 +22,8 @@ class QuestionsController extends Controller
      */
     public function create()
     {
-        return view('questions.create');
+        $categories = Category::all();
+        return view('questions.create', compact('categories'));
     }
 
     /**
