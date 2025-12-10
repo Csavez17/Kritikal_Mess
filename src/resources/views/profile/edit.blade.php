@@ -1,5 +1,5 @@
 @extends('layout')
-
+@section('hatterkep', asset('KM_kerdes_oldal.jpg'))
 @section('content')
 
     <style>

@@ -3,7 +3,7 @@
         <h2 class="profile-section-title">
             {{ __('Jelszó módosítása') }}
         </h2>
-
+    
         <p class="profile-section-desc">
             {{ __('Válassz egy hosszú, véletlenszerű jelszót a biztonság érdekében.') }}
         </p>
@@ -14,7 +14,7 @@
         @method('put')
 
         <div style="margin-bottom: 20px;">
-            <x-input-label class="form-label-login" for="update_password_current_password" :value="__('Current Password')" />
+            <x-input-label class="form-label-login" for="update_password_current_password" :value="__('Aktuális jelszó:')" />
             <br>
             <x-text-input id="update_password_current_password" name="current_password" type="password" 
                           class="form-input" 
@@ -24,7 +24,7 @@
         </div>
 
         <div style="margin-bottom: 20px;">
-            <x-input-label class="form-label-login" for="update_password_password" :value="__('New Password')" />
+            <x-input-label class="form-label-login" for="update_password_password" :value="__('Új jelszó:')" />
             <br>
             <x-text-input id="update_password_password" name="password" type="password" 
                           class="form-input" 
@@ -34,7 +34,7 @@
         </div>
 
         <div style="margin-bottom: 20px;">
-            <x-input-label class="form-label-login" for="update_password_password_confirmation" :value="__('Confirm Password')" />
+            <x-input-label class="form-label-login" for="update_password_password_confirmation" :value="__('Új jelszó mégegyszer:')" />
             <br>
             <x-text-input id="update_password_password_confirmation" name="password_confirmation" type="password" 
                           class="form-input" 

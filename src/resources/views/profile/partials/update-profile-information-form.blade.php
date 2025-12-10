@@ -1,8 +1,7 @@
 <section>
     
-   
         <p class="profile-section-desc">
-            {{ __("Frissítsd a fiókod adatait és email címét.") }}
+            {{ __("Frissítsd a fiókod adatait:") }}
         </p>
     
 
@@ -15,7 +14,7 @@
         @method('patch')
 
         <div style="margin-bottom: 20px;">
-            <x-input-label class="form-label-login" for="name" :value="__('Name')" />
+            <x-input-label class="form-label-login" for="name" :value="__('Név:')" />
             <br>
             <x-text-input id="name" name="name" type="text" 
                           class="form-input" 
@@ -24,7 +23,7 @@
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
 
-        <div style="margin-bottom: 20px;">
+     <!--   <div style="margin-bottom: 20px;">
             <x-input-label class="form-label-login" for="email" :value="__('Email')" />
             <br>
             <x-text-input id="email" name="email" type="email" 
@@ -32,7 +31,7 @@
                           style="text-align: center; width: 300px;"
                           :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
-        </div>
+        </div> -->
 
         <div class="flex items-center gap-4" style="justify-content: center;">
             <x-primary-button class="button">{{ __('Mentés') }}</x-primary-button>
