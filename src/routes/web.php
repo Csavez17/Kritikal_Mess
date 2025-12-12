@@ -19,6 +19,11 @@ Route::get('/index', function () {
 
 
 // 2 in 1 kód:
+
+Route::get('/what_is_it', function () {
+    return view('what_is_it');
+})->name('what_is_it');
+
 Route::get('/', function () {
     return view('index');
 })->name('index');
@@ -44,7 +49,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/questions/create', [QuestionsController::class, 'create'])->name('questions.create');
     Route::post('/questions', [QuestionsController::class, 'store'])->name('questions.store');
-
+    
 });
 
 Route::get('/questions/{question}', [QuestionsController::class, 'show'])->name('questions.show');
