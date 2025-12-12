@@ -1,29 +1,35 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Profile') }}
-        </h2>
-    </x-slot>
+@extends('layout')
+@section('hatterkep', asset('KM_kerdes_oldal.jpg'))
+@section('content')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-profile-information-form')
-                </div>
-            </div>
+    <style>
+        .image-wrapper {
+            display: block !important; /* Kikapcsolja a középre igazítást */
+            padding-top: 120px;        /* Ezzel állítod be, mennyi hely legyen FENT (a logó alatt) */
+            overflow-y: auto;          /* Engedélyezi a görgetést, ha nem férne ki */
+        }
+    </style>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.update-password-form')
-                </div>
-            </div>
-
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
-                <div class="max-w-xl">
-                    @include('profile.partials.delete-user-form')
-                </div>
-            </div>
+    <div style="padding-bottom: 50px; text-align: center; max-width: 600px; margin: 0 auto;">
+        
+     
+        <div style="margin-bottom: 40px;">
+            @include('profile.partials.update-profile-information-form')
         </div>
+
+        <hr style="border-color: rgba(255,255,255,0.2); margin: 30px 0; width: 80%; margin-left: auto; margin-right: auto;">
+
+        <div style="margin-bottom: 40px;">
+            @include('profile.partials.update-password-form')
+        </div>
+
+        <hr style="border-color: rgba(255,255,255,0.2); margin: 30px 0; width: 80%; margin-left: auto; margin-right: auto;">
+
+        <div style="margin-bottom: 50px;">
+            @include('profile.partials.delete-user-form')
+        </div>
+
     </div>
-</x-app-layout>
+
+@endsection
+

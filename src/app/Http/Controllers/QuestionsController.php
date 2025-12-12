@@ -12,10 +12,26 @@ class QuestionsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $questions = Question::latest()->get();
-        return view('questions.index', compact('questions'));
+        // 1. Előkészítjük a lekérdezést (még nem kérjük le az adatot)
+        // A 'with' előre betölti a kategória adatait (hogy ne legyen lassú)
+        $query = Question::withCount(['yesVotes', 'noVotes'])->with('category');
+
+        // 2. SZŰRÉS LOGIKA: Ha van kiválasztva kategória...
+        if ($request->filled('category_id')) {
+            // ...akkor csak azokat kérjük le, ahol egyezik az ID
+            $query->where('category_id', $request->input('category_id'));
+        }
+
+        // 3. Most futtatjuk le a lekérdezést
+        $questions = $query->latest()->get();
+
+        // 4. Lekérjük az összes kategóriát a legördülő menühöz
+        $categories = Category::all();
+
+        // 5. Átadjuk a kérdéseket ÉS a kategóriákat is a nézetnek
+        return view('questions.index', compact('questions', 'categories'));
     }
 
     /**

@@ -8,6 +8,7 @@
     
     /* --- SZÖVEG SZÍNEK --- */
     --szoveg-feher:          #ffffff;   /* Címsorok, sima szövegek */
+    --szoveg-sotet:          #0a0106;   /* Majdnem fekete szöveg */
     --szoveg-fekete:         #000000;   /* Gombok szövege, beviteli mezők szövege */
     --szoveg-cimke-rozsaszin:#fedbef;   /* A "Kérdés", "Kategória" feliratok színe */
     --szoveg-halvany-lila:   #d5abc3;   /* Díszítő szövegek, kevésbé fontos infók */
@@ -36,13 +37,15 @@ html, body {
     /* Itt használjuk a fenti változókat: */
     background-color: var(--oldal-hatter-teteje);
     background: linear-gradient(to bottom, var(--oldal-hatter-teteje), var(--oldal-hatter-alja)); 
-    color: var(--szoveg-fekete);              
+    color: var(--szoveg-fekete);   
+    margin: 0;
+    overflow: hidden;           
 }
 
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* Hogy a lábléc mindig alul legyen */
+    height: 100vh; /* Hogy a lábléc mindig alul legyen */
 }
 
 /* ============================================================
@@ -81,6 +84,8 @@ h1 {
     min-width: 200px; 
     padding: 10px; 
     height: 150px; 
+    resize: none;
+   
 }
 
 /* A mezők feletti feliratok (pl. "Kategória") */
@@ -102,7 +107,7 @@ h1 {
 
 /* A legördülő menü (select) */
 .category {
-    color: #0a0106; /* Nagyon sötét, majdnem fekete */
+    color: var(--szoveg-sotet); /* Nagyon sötét, majdnem fekete */
     font-size: 1.1em;
     font-family: 'Courier New', Courier, monospace;
     margin-bottom: 0.5em;
@@ -112,12 +117,14 @@ h1 {
 
 /* Input mező bejelentkező oldal */
 .form-input {
-    color: #0a0106; /* Nagyon sötét, majdnem fekete */
+    color: var(--szoveg-sotet); /* Nagyon sötét, majdnem fekete */
     font-size: 1.1em;
     font-family: 'Courier New', Courier, monospace;
     margin-bottom: 0.5em;
     border-radius: 10px;
-    padding: 8px; 
+    padding: 8px;
+    width: 350px;      
+    max-width: 90%; 
 }
 
 /* ============================================================
@@ -202,18 +209,31 @@ header a:hover {
    FŐ TARTALOM (MAIN) ÉS KÉPEK
    ============================================================ */
 .image-wrapper {
-    flex: 1; 
-    display: flex;
+    width: 80%;
+    margin: 0 auto;
+    border-radius: 10px;
+    
+    /* --- ITT A JAVÍTÁS --- */
+    height: 100vh;            /* Fix magasság: A képernyő 75%-a */
+    max-height: 1000px;       /* Opcionális: ne legyen túl nagy óriás monitoron */
+    flex: 1;
+    display: flex;           /* Flexbox bekapcsolása */
+    /*flex-direction: column;  /* Egymás alá rendezés */
+    /*overflow: hidden !important; /* A külső doboz NE görögjön */
+    /* --------------------- */
+    
+    background-size: cover;
+    background-position: center;
+    /*background-attachment: fixed; */
+    /*background-repeat: no-repeat;*/
+    position: relative;
+    
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
-    width: 80%;           
-    margin: 0 auto;
-    background-size: cover;       
-    background-position: center;  
-    position: relative;
-}
 
+    /*padding-top: 30px;
+    padding-bottom: 30px;*/
+}
 .content-on-image {
     text-align: center;
     color: var(--szoveg-feher); 
@@ -260,4 +280,206 @@ a {
     text-align: center;
     font-family: 'Courier New', Courier, monospace;
     margin-top: 0.5em;
+}
+
+/* ============================================================
+   PROFIL OLDAL BEÁLLÍTÁSOK
+   ============================================================ */
+
+/* A szekciók címei (pl. Profil információk) */
+.profile-section-title {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+/* A leíró szövegek (pl. Frissítsd a fiókod...) */
+.profile-section-desc {
+    color: var(--szoveg-feher);
+    margin-top: 25px;
+    margin-bottom: 25px;
+    font-size: 1.2rem;   
+    text-align: center;
+}
+
+/* A mentés visszajelzés (Saved.) */
+.profile-saved-message {
+    color: var(--szoveg-feher);
+    margin-left: 10px;
+}
+
+/* ============================================================
+   KÉRDÉSEK LISTÁJA (INDEX OLDAL)
+   ============================================================ */
+
+/* Egy kérdés doboz (li) */
+.question-card {
+    background-color: rgba(255, 255, 255, 0.1); /* Áttetsző háttér */
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+/* A kérdés fejléce (Cím + Kategória címke) */
+.question-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+    
+}
+
+/* A kérdés címe */
+.question-title {
+    font-size: 1.3rem;
+    color: var(--szoveg-feher);
+    
+    
+}
+
+/* A lila kategória címke */
+.category-badge {
+    background-color: var(--szoveg-halvany-lila); /* Vagy #d5abc3 */
+    color: var(--szoveg-fekete);
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+/* Szavazó gombok konténere */
+.vote-container {
+    text-align: center;
+}
+
+/* Szavazó formok */
+.vote-form {
+    display: inline;
+}
+
+/* A "Nem" gomb formjának margója */
+.vote-form-right {
+    display: inline;
+    margin-left: 10px;
+}
+
+/* Szavazatszámláló badge (Bootstrap pótlás, ha nincs bootstrap) */
+.vote-count {
+    background-color: white;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: 5px;
+    font-size: 0.9em;
+}
+
+.text-success { 
+    color: var(--szoveg-fekete); 
+}
+.text-danger { 
+    color: var(--szoveg-fekete); 
+}
+
+.error-message{
+    color: var(--szoveg-halvany-lila);
+}
+
+.alert-success{
+    color: var(--szoveg-halvany-lila);
+}
+
+.question-scroll-area {
+    width: 100%;
+    
+    /* Kitölti a maradék helyet a Cím alatt */
+    flex: 1; 
+    
+    /* Görgetés bekapcsolása */
+    overflow-y: auto; 
+    
+    /* FONTOS JAVÍTÁS: Ez kell, hogy a görgetés működjön Flexboxban! */
+    min-height: 0; 
+    
+    padding: 10px 20px; 
+}
+.image-wrapper-questions{
+    width: 100%;
+    margin: 0 auto;
+    border-radius: 10px;
+    
+    /* --- ITT A JAVÍTÁS --- */
+    height: 75vh;            /* Fix magasság: A képernyő 75%-a */
+    max-height: 1000px;       /* Opcionális: ne legyen túl nagy óriás monitoron */
+    flex: 1;
+    display: flex;           /* Flexbox bekapcsolása */
+    flex-direction: column;  /* Egymás alá rendezés */
+    overflow: hidden !important; /* A külső doboz NE görögjön */
+    /* --------------------- */
+    
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; 
+    background-repeat: no-repeat;
+    position: relative;
+    
+    justify-content: center;
+    align-items: center;
+
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+@media (max-width: 768px) {
+
+    /* 1. A fő doboz szélesebb legyen mobilon, ne pazaroljuk a helyet */
+    .image-wrapper {
+        width: 95% !important; /* 80% helyett szinte teljes szélesség */
+        height: auto !important; /* Mobilon engedjük megnyúlni */
+        min-height: 100vh;
+    }
+
+    /* 2. A nagy címek legyenek kisebbek, hogy kiférjenek */
+    h1 {
+        font-size: 1.5em; /* 2em helyett kisebb */
+        text-align: center;
+    }
+
+    .text {
+        font-size: 1.2em; /* 2.5em helyett sokkal kisebb */
+    }
+
+    /* 3. A gombok egymás alá kerüljenek, ne egymás mellé */
+    .button-group {
+        flex-direction: column; /* Egymás alá rendezés */
+        gap: 20px; /* A hatalmas 15em helyett kicsi rés */
+        align-items: center;
+    }
+    
+    .big_button {
+        width: 100%; /* A gomb legyen teljes szélességű */
+        font-size: 20px; /* Kisebb betű a gombban */
+        padding: 15px;
+    }
+
+    /* 4. A kérdés kártyák beállításai mobilon */
+    .question-card {
+        padding: 10px; /* Kisebb belső térköz */
+    }
+
+    /* 5. A fejléc menü (Header) igazítása */
+    header {
+        flex-direction: column; /* A logó és a menü egymás alá kerüljön */
+        text-align: center;
+        padding-bottom: 20px;
+    }
+
+    header ul {
+        flex-direction: column; /* A menüpontok is egymás alá */
+        padding: 0;
+        margin-top: 15px;
+    }
+
+    header li {
+        margin: 10px 0; /* Térköz a menüpontok között */
+    }
 }

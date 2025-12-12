@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KritikalMess</title>
     <link rel="stylesheet" href="{{ asset('style.css') }}">
+
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script> <!-- Fiók törlése funkció -->
 </head>
 <body>
     <header>
@@ -47,12 +49,12 @@
         </nav>
     </header>
 
-   <main class="image-wrapper" 
-      style="background-image: url('{{ asset('Kritikal_Mess_kep.jpg') }}');">
-        <div class="content-on-image">
-            @yield('content')
-        </div>
-    </main>
+  <main class="image-wrapper" 
+      style="background-image: url('@yield('hatterkep', asset('Kritikal_Mess_kep.jpg'))');">
+      <div class="content-on-image">
+        @yield('content')
+    </div>
+</main>
 
     <footer>
         <p>&copy; 2025 KritikalMess</p>

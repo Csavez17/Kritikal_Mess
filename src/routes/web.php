@@ -27,7 +27,9 @@ Route::get('/', function () {
 Route::get('/questions', [QuestionsController::class, 'index'])->name('questions.index');
 
 
-Route::post('/questions/{question}/vote', [VotesController::class, 'store'])->name('vote');
+Route::post('/questions/{question}/vote', [VotesController::class, 'store'])
+    ->name('questions.vote');
+
 
 
 Route::middleware('auth')->group(function () {
