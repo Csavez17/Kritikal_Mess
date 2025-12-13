@@ -24,6 +24,8 @@ class CategorySeeder extends Seeder
     ['category_name' => 'Oktatás / Tanulás'],
     ['category_name' => 'Társalgás / Közélet'],
     ['category_name' => 'Utazás'],
+    ['category_name' => 'Időjárás'],
+    ['category_name' => 'Egyéb'],
     ];
 
         foreach ($categories as $category) {

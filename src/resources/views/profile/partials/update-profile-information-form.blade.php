@@ -11,6 +11,7 @@
 
     <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
         @csrf
+        <input type="hidden" name="email" value="{{ $user->email }}">
         @method('patch')
 
         <div style="margin-bottom: 20px;">

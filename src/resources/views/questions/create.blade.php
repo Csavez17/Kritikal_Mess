@@ -6,12 +6,15 @@
 @error('question_name')
     <div class="alert alert-warning">{{ $message }}</div>
 @enderror
+@error('category_id')
+    <div class="alert alert-warning">{{ $message }}</div>
+@enderror
 
 <form action="{{ route('questions.store') }}" method="post">
     @csrf
     
     <label class="form-label" for="question_name">A kérdésem:</label>
-    <textarea class="form-textarea" id="question_name" name="question_name"></textarea>
+    <textarea class="form-textarea" id="question_name" name="question_name">{{ old('question_name') }}</textarea>
 
     <label class="form-label" for="category_id">Kategória</label>
     <select class="category" name="category_id" id="category_id">

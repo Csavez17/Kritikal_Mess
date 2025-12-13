@@ -14,10 +14,11 @@
         <nav>
          <ul>
                 {{-- mindenki --}}
+                <li><a href="{{ route('what_is_it') }}">Mi is ez?</a></li>                
+                <li></li>
                 <li><a href="{{ route('index') }}">Főoldal</a></li>
                 <li><a href="{{ route('questions.index') }}">Kérdések</a></li>
                 <li><a href="{{ route('questions.create') }}">Új szavazás</a></li>
-
                 {{-- VENDÉGEK (ha NINCS bejelentkezve) --}}
                 @guest
                     <li><a href="{{ route('login') }}">Bejelentkezés</a></li>
@@ -42,15 +43,22 @@
                                 Kilépés
                             </button>
                         </form>
-                    </li>
+                    </li>               
 
                 @endauth
             </ul>
         </nav>
     </header>
-
+    <!--
   <main class="image-wrapper" 
-      style="background-image: url('@yield('hatterkep', asset('Kritikal_Mess_kep.jpg'))');">
+      style="background-image: url('@yield('hatterkep', asset('Kritikal_Mess_kep.jpg'))')">  ez a régi kód, hibát hoz, új kód következő 4 sor-->
+
+      @php
+    $hatter = trim(View::getSections()['hatterkep'] ?? '') ?: asset('Kritikal_Mess_kep.jpg');
+@endphp
+
+<main class="image-wrapper" style="background-image: url('{{ $hatter }}')">
+
       <div class="content-on-image">
         @yield('content')
     </div>
